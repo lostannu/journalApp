@@ -20,11 +20,16 @@ import java.util.Optional;
 @Slf4j
 public class JournalEntryService {
 
-    @Autowired
     private JournalEntryRepository journalEntryRepository;
 
-    @Autowired
     private UserService userService;
+
+    @Autowired
+    public JournalEntryService(JournalEntryRepository journalEntryRepository, UserService userService) {
+        this.journalEntryRepository = journalEntryRepository;
+        this.userService = userService;
+
+    }
 
 
 

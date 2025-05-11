@@ -20,8 +20,13 @@ import java.util.Optional;
 @Service
 @Slf4j
 public class UserService {
-    @Autowired
+
     private UserRepository userRepository;
+
+    @Autowired
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     private static final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 

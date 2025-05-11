@@ -1,7 +1,9 @@
 package net.engineeringdigest.journalApp.config;
 
 import io.jsonwebtoken.Jwt;
+import net.engineeringdigest.journalApp.cache.AppCache;
 import net.engineeringdigest.journalApp.filter.JwtFilter;
+import net.engineeringdigest.journalApp.service.RedisService;
 import net.engineeringdigest.journalApp.service.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -23,11 +25,15 @@ import javax.swing.text.html.HTML;
 @EnableWebSecurity
 public class SpringSecurity extends WebSecurityConfigurerAdapter {
 
-    @Autowired
     private UserDetailsServiceImpl userDetailsService;
 
-    @Autowired
     private JwtFilter jwtFilter;
+
+    @Autowired
+    public SpringSecurity(UserDetailsServiceImpl userDetailsService, JwtFilter jwtFilter) {
+        this.userDetailsService = userDetailsService;
+        this.jwtFilter = jwtFilter;
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {

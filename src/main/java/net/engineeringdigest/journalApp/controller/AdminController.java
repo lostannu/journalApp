@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
@@ -16,11 +17,15 @@ import java.util.List;
 @Tag(name = "Admin APIs")
 public class AdminController {
 
-    @Autowired
     private UserService userService;
 
-    @Autowired
     private AppCache appCache;
+
+    @Autowired
+    public AdminController( UserService userService, AppCache appCache) {
+        this.userService = userService;
+        this.appCache = appCache;
+    }
 
     @GetMapping("/all-users")
     public ResponseEntity<?> getAllUsers() {

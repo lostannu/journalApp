@@ -21,15 +21,22 @@ import org.springframework.web.bind.annotation.*;
 @Tag(name = "Public APIs")
 public class PublicController {
 
-    @Autowired
+
     private AuthenticationManager authenticationManager;
-    @Autowired
+
     private UserDetailsServiceImpl userDetailsService;
-    @Autowired
+
     private UserService userService;
 
-    @Autowired
     private JwtUtil jwtUtil;
+
+    @Autowired
+    public PublicController(AuthenticationManager authenticationManager,UserDetailsServiceImpl userDetailsService,UserService userService,JwtUtil jwtUtil) {
+        this.authenticationManager = authenticationManager;
+        this.userDetailsService = userDetailsService;
+        this.userService=userService;
+        this.jwtUtil=jwtUtil;
+    }
 
     @GetMapping("/health-check")
     public String healthCheck() {

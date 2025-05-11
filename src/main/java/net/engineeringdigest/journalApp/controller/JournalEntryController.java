@@ -22,11 +22,15 @@ import java.util.stream.Collectors;
 @Tag(name = "Journal APIs")
 public class JournalEntryController {
 
-    @Autowired
-    private JournalEntryService journalEntryService;
 
-    @Autowired
+    private JournalEntryService journalEntryService;
     private UserService userService;
+
+    public JournalEntryController(JournalEntryService journalEntryService, UserService userService) {
+        this.journalEntryService = journalEntryService;
+        this.userService = userService;
+    }
+
 
     @GetMapping
     @Operation(summary = "Get all journal entries of a user")

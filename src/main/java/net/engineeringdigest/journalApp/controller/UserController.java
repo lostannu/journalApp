@@ -18,14 +18,19 @@ import org.springframework.web.bind.annotation.*;
 @Tag(name = "User APIs", description = "Read, Update & Delete User")
 public class UserController {
 
-    @Autowired
     private UserService userService;
 
-    @Autowired
     private UserRepository userRepository;
 
-    @Autowired
     private WeatherService weatherService;
+
+    @Autowired
+    public UserController(UserService userService, UserRepository userRepository, WeatherService weatherService) {
+        this.userService = userService;
+        this.userRepository = userRepository;
+        this.weatherService = weatherService;
+
+    }
 
     @PutMapping
     public ResponseEntity<?> updateUser(@RequestBody User user) {

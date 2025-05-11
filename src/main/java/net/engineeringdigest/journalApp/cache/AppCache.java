@@ -17,8 +17,12 @@ public class AppCache {
         WEATHER_API;
     }
 
-    @Autowired
     private ConfigJournalAppRepository configJournalAppRepository;
+
+    @Autowired
+    public AppCache(ConfigJournalAppRepository configJournalAppRepository) {
+        this.configJournalAppRepository = configJournalAppRepository;
+    }
 
     public Map<String, String> appCache;
 
